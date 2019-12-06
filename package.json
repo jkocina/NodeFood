@@ -1,0 +1,32 @@
+{
+  "name": "nodesportsblog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkocina/NodeSportsBlog.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jkocina/NodeSportsBlog/issues"
+  },
+  "homepage": "https://github.com/jkocina/NodeSportsBlog#readme",
+  "dependencies": {
+    "body-parser": "*",
+    "connect-flash": "*",
+    "cookie-parser": "^1.4.4",
+    "express": "*",
+    "express-messages": "*",
+    "express-session": "*",
+    "express-validator": "*",
+    "moment": "*",
+    "mongoose": "*",
+    "pug": "*"
+  }
+}
