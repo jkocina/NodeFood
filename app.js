@@ -11,6 +11,11 @@ const port = (process.env.PORT) ? process.env.PORT : 3000;
 //init app
 const app = express();
 
+const indexRoute = require("./routes/index");
+const articlesRoute = require("./routes/articles");
+const categoriesRoute = require("./routes/categories");
+const manageRoute = require("./routes/manage");
+
 //set view engine
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -27,9 +32,11 @@ app.use(cookieParser('keyboard cat'));
 app.use(session({ cookie: { maxAge: 60000 }}));
 app.use(flash());
 
-app.get('/', (req, res, next) => {
-  res.send("Hello");
-})
+app.use('/', indexRoute);
+app.use('/articles', articlesRoute);
+app.use('/categories', categoriesRoute);
+app.use('/manage', manageRoute);
+
 
 app.listen(port, () => {
   console.log("Server running on port " + port);
