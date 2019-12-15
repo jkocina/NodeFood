@@ -5,7 +5,11 @@ const session = require("express-session");
 const expressValidator = require("express-validator");
 const flash = require("connect-flash");
 const cookieParser = require("cookie-parser");
+const mongoose = require("");
 
+//Mongoose Connect
+mongoose.connect('mongodb://localhost')
+//Port
 const port = (process.env.PORT) ? process.env.PORT : 3000;
 
 //init app
