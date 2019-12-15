@@ -1,11 +1,15 @@
-const express = require("express");
-const path = require("path");
-const bodyParser = require("body-parser");
-const session = require("express-session");
-const expressValidator = require("express-validator");
-const flash = require("connect-flash");
-const cookieParser = require("cookie-parser");
-const mongoose = require("");
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const session = require('express-session');
+const expressValidator = require('express-validator');
+const flash = require('connect-flash');
+const cookieParser = require('cookie-parser');
+const mongoose = require('mongoose');
+const setEnv = require('./util/setEnv.js');
+
+//Setting the ENV variables for db connection
+setEnv.setEnv();
 
 //Mongoose Connect
 mongoose.connect('mongodb://localhost')
@@ -15,10 +19,10 @@ const port = (process.env.PORT) ? process.env.PORT : 3000;
 //init app
 const app = express();
 
-const indexRoute = require("./routes/index");
-const articlesRoute = require("./routes/articles");
-const categoriesRoute = require("./routes/categories");
-const manageRoute = require("./routes/manage");
+const indexRoute = require('./routes/index');
+const articlesRoute = require('./routes/articles');
+const categoriesRoute = require('./routes/categories');
+const manageRoute = require('./routes/manage');
 
 //set view engine
 app.set('views', path.join(__dirname, 'views'));
