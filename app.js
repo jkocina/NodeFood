@@ -12,13 +12,15 @@ const setEnv = require('./util/setEnv.js');
 setEnv.setEnv();
 
 //Mongoose Connect
-mongoose.connect('mongodb://localhost')
-//Port
+mongoose.connect('mongodb://localhost/techblog')
+
+//Getting the Port
 const port = (process.env.PORT) ? process.env.PORT : 3000;
 
 //init app
 const app = express();
 
+//setting the route locations for the project
 const indexRoute = require('./routes/index');
 const articlesRoute = require('./routes/articles');
 const categoriesRoute = require('./routes/categories');
@@ -32,7 +34,7 @@ app.set('view engine', 'pug');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false}));
 
-// set static folder
+//set static folder
 app.use(express.static(path.join(__dirname, 'public')));
 
 //connect flash middle ware
@@ -40,12 +42,13 @@ app.use(cookieParser('keyboard cat'));
 app.use(session({ cookie: { maxAge: 60000 }}));
 app.use(flash());
 
+//setting the routes for the router
 app.use('/', indexRoute);
 app.use('/articles', articlesRoute);
 app.use('/categories', categoriesRoute);
 app.use('/manage', manageRoute);
 
-
+//setting the app to listen on the port
 app.listen(port, () => {
   console.log("Server running on port " + port);
 });

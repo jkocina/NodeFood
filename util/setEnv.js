@@ -5,6 +5,7 @@ const os = require('os');
  */
  module.exports = {
 
+   //This function will test for and set the proper variables depending on the variables for the environment
    setEnv: function() {
 
      //testing if the index local of the beginning of local is present in the hostname
