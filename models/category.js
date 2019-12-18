@@ -10,9 +10,10 @@ const categorySchema = mongoose.Schema({
   }
 })
 
+//setting a variable and exporting it as the mongoose model following the schema
 const Category = module.exports = mongoose.model('Category', categorySchema);
 
-// Get categories
+// creating and exporting a getCategories function
 module.exports.getCategories = function(callback, limit) {
   Category.find(callback).limit(limit).sort([['title','ascending']])
 }
