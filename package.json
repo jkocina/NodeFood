@@ -1,5 +1,5 @@
 {
-  "name": "nodesportsblog",
+  "name": "NodeFood",
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jkocina/NodeSportsBlog.git"
+    "url": "git+https://github.com/jkocina/NodeFood.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jkocina/NodeSportsBlog/issues"
+    "url": "https://github.com/jkocina/NodeFood/issues"
   },
-  "homepage": "https://github.com/jkocina/NodeSportsBlog#readme",
+  "homepage": "https://github.com/jkocina/NodeFood#readme",
   "dependencies": {
     "body-parser": "*",
     "bootstrap": "^4.4.1",

@@ -12,7 +12,7 @@ const setEnv = require('./util/setEnv.js');
 setEnv.setEnv();
 
 //Mongoose Connect
-mongoose.connect('mongodb://localhost/techblog')
+mongoose.connect('mongodb://localhost/food')
 
 //Getting the Port
 const port = (process.env.PORT) ? process.env.PORT : 3000;
