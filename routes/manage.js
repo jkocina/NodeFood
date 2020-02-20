@@ -17,7 +17,7 @@ router.get('/categories', (req, res, next) => {
 
 
 //This will handle a GET request that will add an article
-router.post('/articles/add', (req, res, next) => {
+router.get('/articles/add', (req, res, next) => {
   res.render('add_article', {
     title: 'Create Article'
   })
@@ -25,7 +25,7 @@ router.post('/articles/add', (req, res, next) => {
 
 
 //This will handle a GET request that will add an category
-router.post('/categories/add', (req, res, next) => {
+router.get('/categories/add', (req, res, next) => {
   res.render('add_category', {
     title: 'Create Category'
   })

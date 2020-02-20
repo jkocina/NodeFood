@@ -22,7 +22,7 @@ const app = express();
 
 //setting the route locations for the project
 const indexRoute = require('./routes/index');
-const articlesRoute = require('./routes/articles');
+const articlesRoute = require('./routes/recipes');
 const categoriesRoute = require('./routes/categories');
 const manageRoute = require('./routes/manage');
 
@@ -44,7 +44,7 @@ app.use(flash());
 
 //setting the routes for the router
 app.use('/', indexRoute);
-app.use('/articles', articlesRoute);
+app.use('/recipes', articlesRoute);
 app.use('/categories', categoriesRoute);
 app.use('/manage', manageRoute);
 
