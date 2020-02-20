@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+Category = require('../models');
 
 //This will handle a GET request to manage articles
 router.get('/articles',  (req, res, next) => {
