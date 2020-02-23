@@ -2,3 +2,13 @@ extends layout
 
 block content
   h1 #{title}
+  table(class='table table-striped')
+    tr
+      th Category title
+      th Category description
+    each category, i in categories
+      tr
+        td #{category.title}
+        td #{category.description}
+          a(class="btn btn-tiny btn-default" href='/manage/categories/edit/'+category._id) Edit
+          a(class="btn btn-tiny btn-default" href='/manage/categories/delete/'+category._id) Delete

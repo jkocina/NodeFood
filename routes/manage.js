@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-Category = require('../models');
+Category = require('../models/Category.js');
 
 //This will handle a GET request to manage articles
 router.get('/articles',  (req, res, next) => {
@@ -11,8 +11,20 @@ router.get('/articles',  (req, res, next) => {
 
 //This will handle a GET request to manage categories
 router.get('/categories', (req, res, next) => {
-  res.render('manage_categories', {
-    title: 'Manage Categories'
+
+  Category.getCategories((err, categories) => {
+
+    if (err) {
+      res.send(err)
+    }
+
+    console.log(categories);
+
+    //render the manage categories view
+    res.render('manage_categories', {
+      title: 'Manage Categories',
+      categories: categories
+    })
   })
 })
 
