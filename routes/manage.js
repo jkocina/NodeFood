@@ -54,8 +54,16 @@ router.get('/articles/edit/:id', (req, res, next) => {
 
 //This will handle a GET request to return a view to edit a category
 router.get('/categories/edit/:id', (req, res, next) => {
-  res.render('edit_categories', {
-    title: 'Edit Categories'
+  Category.getCategoryById(req.params.id, (err, category) => {
+
+    if (err) {
+      res.send(err)
+    }
+
+    res.render('edit_category', {
+      title: 'Edit Category',
+      category: category
+    })
   })
 })
 
