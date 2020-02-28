@@ -41,7 +41,7 @@ router.post('/edit/:id', (req, res, next) => {
 
     res.redirect('/manage/categories');
 
-  });
+  })
 });
 
 // add category
