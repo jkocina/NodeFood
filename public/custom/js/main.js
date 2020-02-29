@@ -5,7 +5,6 @@ $(document).ready(() => {
 
       $.ajax({
         type: "DELETE",
-        async: false,
         url: "/categories/delete/"+$target.attr('data-cat-id'),
         success: (response) => {
 
