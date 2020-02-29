@@ -1,6 +1,6 @@
-const express = require('express');
-const router = express.Router();
-Category = require('../models/Category.js');
+const express = require('express')
+const router = express.Router()
+Category = require('../models/Category.js')
 
 //This will handle a GET request to manage articles
 router.get('/articles',  (req, res, next) => {
@@ -18,7 +18,7 @@ router.get('/categories', (req, res, next) => {
       res.send(err)
     }
 
-    console.log(categories);
+    console.log(categories)
 
     //render the manage categories view
     res.render('manage_categories', {
@@ -67,4 +67,4 @@ router.get('/categories/edit/:id', (req, res, next) => {
   })
 })
 
-module.exports = router;
+module.exports = router

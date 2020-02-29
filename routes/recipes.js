@@ -1,5 +1,5 @@
-const express = require('express');
-const router = express.Router();
+const express = require('express')
+const router = express.Router()
 
 //This GET request will show all the articles
 router.get('/',  (req, res, next) => {
@@ -24,4 +24,4 @@ router.get('/category/:category_id',  (req, res, next) => {
 
 
 
-module.exports = router;
+module.exports = router

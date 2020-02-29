@@ -12,4 +12,4 @@ block content
         textarea.form-control(name='description', type='text') #{category.description}
       input.btn.btn-primary(type='submit', name='submit', value='Save')
       a.btn.btn-secondary(href='/manage/categories') Back
-      a.btn.btn-danger.category-delete.pull-right(href='/manage/categories', data-cat-id=category._id) Delete
+      a.btn.btn-danger.category-delete.pull-right(data-cat-id=category._id) Delete
