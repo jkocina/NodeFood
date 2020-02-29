@@ -18,8 +18,6 @@ router.get('/categories', (req, res, next) => {
       res.send(err)
     }
 
-    console.log(categories)
-
     //render the manage categories view
     res.render('manage_categories', {
       title: 'Manage Categories',

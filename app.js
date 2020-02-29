@@ -30,6 +30,12 @@ const manageRoute = require('./routes/manage')
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
+//Setting this header information to get the ajax call to work
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+  next()
+})
 //bodyParser middle ware
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false}))
@@ -41,6 +47,15 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(cookieParser('keyboard cat'))
 app.use(session({ cookie: { maxAge: 60000 }}))
 app.use(flash())
+
+
+// Express messages
+app.use(require('connect-flash')());
+app.use((req, res, next) => {
+  res.locals.messages = require('express-messages')(req, res)
+  next()
+})
+
 
 //setting the routes for the router
 app.use('/', indexRoute)
