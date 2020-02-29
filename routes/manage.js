@@ -4,8 +4,8 @@ Category = require('../models/Category.js')
 
 //This will handle a GET request to manage articles
 router.get('/recipe',  (req, res, next) => {
-  res.render('manage_articles', {
-    title: 'Manage Articles'
+  res.render('manage_recipes', {
+    title: 'Manage Recipes'
   })
 })
 

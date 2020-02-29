@@ -5,21 +5,20 @@ const recipeSchema = mongoose.Schema({
   title:{
     type: String
   },
-  subtitle: {
-    type: String
-  },
+  ingredients: [],
   category: {
     type: String
   },
-  body: {
-    type: String
-  },
+  steps: [],
   author: {
     type: String
   },
   created_at: {
-    type: date,
+    type: Date,
     default: Date.now
+  },
+  author: {
+    type: String
   },
   comments:  [{
     comment_subject: {

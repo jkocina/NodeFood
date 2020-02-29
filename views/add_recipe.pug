@@ -3,18 +3,30 @@ extends layout
 block content
   .container
     h1 #{title}
-    form(method='post', action='/articles/add')
+    form(method='post', action='/recipes/add')
       .form-group
         label Title:
         input.form-control(name='title', type='text')
       .form-group
-        label Subtitle:
-        input.form-control(name='subtitle', type='text')
+        label Ingredients:
+        input.form-control(name='ingredients[]', type='text')
+        a.btn.btn-default.add-button.pull-right Add Ingredient
+        a.btn.btn-default.remove-button.pull-right Remove Ingredient
+      .form-group
+        label Steps:
+        input.form-control(name='steps[]', type='text')
+        a.btn.btn-default.add-button.pull-right Add Step
+        a.btn.btn-default.remove-button.pull-right Remove Step
       .form-group
         label Category
         select.form-control(name='category')
           each category, i in categories
             option(value=category._id text=category.title) #{category.title}
-
+      .form-group
+        label Author
+        input.form-control(name='author', type='text')
+      .form-group
+        label Body
+        textarea.form-control(name="body")
       input.btn.btn-primary(type='submit', name='submit', value='Save')
-      a.btn.btn-danger(href='/manage/categories') Back
+      a.btn.btn-danger(href='/manage/recipe') Back
