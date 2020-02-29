@@ -22,7 +22,7 @@ const app = express()
 
 //setting the route locations for the project
 const indexRoute = require('./routes/index')
-const articlesRoute = require('./routes/recipes')
+const recipeRoute = require('./routes/recipes')
 const categoriesRoute = require('./routes/categories')
 const manageRoute = require('./routes/manage')
 
@@ -59,7 +59,7 @@ app.use((req, res, next) => {
 
 //setting the routes for the router
 app.use('/', indexRoute)
-app.use('/recipes', articlesRoute)
+app.use('/recipes', recipeRoute)
 app.use('/categories', categoriesRoute)
 app.use('/manage', manageRoute)
 

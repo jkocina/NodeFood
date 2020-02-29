@@ -28,11 +28,12 @@ router.get('/categories', (req, res, next) => {
 
 
 //This will handle a GET request that will add an recipe
-router.get('/recipes/add', (req, res, next) => {
+router.get('/recipe/add', (req, res, next) => {
   Category.getCategories((err, categories) => {
     if (err) {
       res.send(err)
     }
+    console.log(categories)
     res.render('add_recipe', {
       title: 'Create Recipe',
       categories: categories
