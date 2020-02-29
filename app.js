@@ -7,6 +7,8 @@ const flash = require('connect-flash')
 const cookieParser = require('cookie-parser')
 const mongoose = require('mongoose')
 const setEnv = require('./util/setEnv.js')
+const cors = require("cors")
+
 
 //Setting the ENV variables for db connection
 setEnv.setEnv()
@@ -30,12 +32,21 @@ const manageRoute = require('./routes/manage')
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
-//Setting this header information to get the ajax call to work
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-  next()
-})
+// var whitelist = ['localhost'] //add heroku
+//
+// var corsOptions = {
+//   origin: '*',
+//   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+// }
+//
+// app.use(cors(corsOptions))
+//
+// //Setting this header information to get the ajax call to work
+// app.use(function(req, res, next) {
+//   res.header("Access-Control-Allow-Origin", "*")
+//   res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+//   next()
+// })
 //bodyParser middle ware
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false}))

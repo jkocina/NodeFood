@@ -12,6 +12,9 @@ router.get('/',  (req, res, next) => {
 
 //This GET request will show a specific article based on the articles id
 router.get('/show/:id',  (req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*")
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+
     res.render('receipe', {
       title:"Receipe"
     })
@@ -28,6 +31,9 @@ router.get('/category/:category_id',  (req, res, next) => {
 // add category
 router.post('/add', (req, res, next) => {
 
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
+
   let recipe = new Recipe()
   recipe.title = req.body.title
 
@@ -39,12 +45,12 @@ router.post('/add', (req, res, next) => {
   recipe.author = req.body.author
 
 
-  // Recipe.addRecipe(recipe, (err, recipe) => {
-  //   if (err) {
-  //     res.send(err)
-  //   }
-  //   res.redirect('/manage/recipes')
-  // })
+  Recipe.addRecipe(recipe, (err, recipe) => {
+    if (err) {
+      res.send(err)
+    }
+    res.redirect('/manage/recipes')
+  })
 })
 
 

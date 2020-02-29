@@ -66,7 +66,7 @@ router.delete('/delete/:id', (req, res, next) => {
     if (err) {
       res.send(err)
     }
-    res.status(200)
+    res.json({ success:true })
   })
 })
 
