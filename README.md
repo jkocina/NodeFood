@@ -1,3 +1,8 @@
-## Node Photography Blog
+## Node Food
+** This site is a space to save my favorite recipes **
 
-** This is a blog about photography **
+Features:
+1. Create account and log in
+2. Browse recipes by category
+3. Add new recipes
+4. Edit recipes from admin section
