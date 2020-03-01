@@ -46,7 +46,7 @@ const recipeSchema = mongoose.Schema({
 //setting a variable and exporting it as the mongoose model following the schema
 const Recipe = module.exports = mongoose.model('recipe', recipeSchema)
 
-// creating and exporting a getRecipes function
+//creating and exporting a getRecipes function
 module.exports.getRecipes = function(callback, limit) {
   Recipe.find(callback).limit(limit).sort([['title','ascending']])
 }

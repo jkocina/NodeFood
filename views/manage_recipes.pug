@@ -6,19 +6,22 @@ block content
       .col-md-9
         h1 #{title}
       .col-md-3
-        a(class="btn btn-success create-btn", href="/manage/recipes/add") Add Recipe
+        a(class="btn btn-success create-btn", href="/manage/recipe/add") Add Recipe
     table(class='table table-striped')
       tr
         th Recipe Title
-        th Recipe ingredients
-        th Recipe steps
-        th Recipe author
+        th Recipe Ingredients
+        th Recipe Steps
+        th Recipe Author
+        th Recipe Body
         th Actions
       each recipe, i in recipes
         tr
           td #{recipe.title}
-
-          td #{recipe.description}
+          td #{recipe.ingredients}
+          td #{recipe.steps}
+          td #{recipe.author}
+          td #{recipe.body}
           td
-            a(class="btn btn-primary" href="/manage/recipes/edit/"+recipe._id) Edit
-            // a(class="btn btn-tiny btn-default" href='/manage/categories/delete/'+category._id) Delete
+            a(class="btn btn-primary" href="/manage/recipe/edit/"+recipe._id) Edit
+            // a(class="btn btn-tiny btn-default" href="/manage/categories/delete/"+recipe._id) Delete

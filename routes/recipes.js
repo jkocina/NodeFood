@@ -36,6 +36,7 @@ router.post('/add', (req, res, next) => {
   recipe.ingredients = req.body.ingredients
   recipe.steps = req.body.steps
   recipe.author = req.body.author
+  recipe.body = req.body.body
 
 
   Recipe.addRecipe(recipe, (err, recipe) => {

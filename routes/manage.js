@@ -37,6 +37,7 @@ router.get('/categories', (req, res, next) => {
 
 //This will handle a GET request that will add an recipe
 router.get('/recipe/add', (req, res, next) => {
+
   Category.getCategories((err, categories) => {
     if (err) {
       res.send(err)
@@ -48,7 +49,6 @@ router.get('/recipe/add', (req, res, next) => {
   })
 })
 
-
 //This will handle a GET request that will add an category
 router.get('/categories/add', (req, res, next) => {
   res.render('add_category', {
@@ -58,8 +58,15 @@ router.get('/categories/add', (req, res, next) => {
 
 //This will handle a GET request for a view to edit articles
 router.get('/recipe/edit/:id', (req, res, next) => {
-  res.render('edit_recipe', {
-    title: 'Edit Recipe'
+
+  Recipe.getRecipeById(req.params.id, (err, recipe) => {
+    if (err) {
+      res.send(err)
+    }
+    res.render('edit_recipe', {
+      title: 'Edit Recipe',
+      recipe: recipe
+    })
   })
 })
 
