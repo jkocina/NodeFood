@@ -1,11 +1,20 @@
 const express = require('express')
 const router = express.Router()
 Category = require('../models/Category.js')
+Recipe = require('../models/Recipes.js')
+
 
 //This will handle a GET request to manage articles
-router.get('/recipe',  (req, res, next) => {
-  res.render('manage_recipes', {
-    title: 'Manage Recipes'
+router.get('/recipes',  (req, res, next) => {
+
+  Recipe.getRecipes((err, recipes) => {
+    if (err) {
+      res.send(err)
+    }
+    res.render('manage_recipes', {
+      title: 'Manage Recipes',
+      recipes: recipes
+    })
   })
 })
 
@@ -13,7 +22,6 @@ router.get('/recipe',  (req, res, next) => {
 router.get('/categories', (req, res, next) => {
 
   Category.getCategories((err, categories) => {
-
     if (err) {
       res.send(err)
     }
@@ -33,7 +41,6 @@ router.get('/recipe/add', (req, res, next) => {
     if (err) {
       res.send(err)
     }
-    console.log(categories)
     res.render('add_recipe', {
       title: 'Create Recipe',
       categories: categories
@@ -60,7 +67,6 @@ router.get('/recipe/edit/:id', (req, res, next) => {
 //This will handle a GET request to return a view to edit a category
 router.get('/categories/edit/:id', (req, res, next) => {
   Category.getCategoryById(req.params.id, (err, category) => {
-
     if (err) {
       res.send(err)
     }

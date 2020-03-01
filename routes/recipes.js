@@ -31,15 +31,8 @@ router.get('/category/:category_id',  (req, res, next) => {
 // add category
 router.post('/add', (req, res, next) => {
 
-  res.header("Access-Control-Allow-Origin", "*")
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
-
   let recipe = new Recipe()
   recipe.title = req.body.title
-
-  console.log(req.body.ingredients)
-  console.log(req.body.steps)
-
   recipe.ingredients = req.body.ingredients
   recipe.steps = req.body.steps
   recipe.author = req.body.author

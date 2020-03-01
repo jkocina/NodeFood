@@ -20,6 +20,9 @@ const recipeSchema = mongoose.Schema({
   author: {
     type: String
   },
+  body: {
+    type: String
+  },
   comments:  [{
     comment_subject: {
       type: String
