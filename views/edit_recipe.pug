@@ -3,19 +3,28 @@ extends layout
 block content
   .container
     h1 #{title}
-    form(method='post', action='/recipe/edit/'+recipe._id)
+    form(method='post', action='/recipes/edit/'+recipe._id)
       .form-group
         label Title:
         input.form-control(name='title', type='text', value=recipe.title)
       .form-group
         label Ingredients:
-
-        each ingredient in recipe.ingredients
-          input.form-control(name='ingredients[]', type='text', value=ingredient)
+        each ingredient, i in recipe.ingredients
+          if i == 0
+            input.form-control(name='ingredients[]', type='text', value=ingredient)
+            a.btn.btn-default.add-button.pull-right Add Ingredient
+            a.btn.btn-default.remove-button.pull-right Remove Ingredient
+          else
+            input.form-control(name='ingredients[]', type='text', value=ingredient)
       .form-group
         label Steps:
-        each step in recipe.steps
-          input.form-control(name='steps[]', type='text', value=step)
+        each step, i in recipe.steps
+          if i == 0
+            input.form-control(name='steps[]', type='text', value=step)
+            a.btn.btn-default.add-button.pull-right Add Step
+            a.btn.btn-default.remove-button.pull-right Remove Step
+          else
+           input.form-control(name='steps[]', type='text', value=step)
       .form-group
         label Author:
         input.form-control(name='author', type='text', value=recipe.author)
@@ -24,5 +33,5 @@ block content
         input.form-control(name='body', type='text', value=recipe.body)
 
       input.btn.btn-primary(type='submit', name='submit', value='Change')
-      a.btn.btn-secondary(href='/manage/categories') Back
+      a.btn.btn-secondary(href='/manage/recipes') Back
       a.btn.btn-danger.category-delete.pull-right(data-cat-id=recipe._id) Delete

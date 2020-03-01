@@ -54,11 +54,11 @@ router.post('/edit/:id', (req, res, next) => {
   const query = {_id: req.params.id}
   const update = {title: req.body.title, ingredients: req.body.ingredients, steps: req.body.steps, category: req.body.category, author: req.body.author, body: req.body.body}
 
-  Category.updateCategory( query, update, {}, (err, category) => {
+  Recipe.updateRecipe( query, update, {}, (err, recipe) => {
     if (err) {
       res.send(err)
     }
-    res.redirect('/manage/categories')
+    res.redirect('/manage/recipes')
   })
 })
 

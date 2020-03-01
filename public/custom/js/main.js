@@ -28,6 +28,8 @@ $('.add-button').on('click', (e) => {
 
   $newField = $field.clone()
 
+  $newField.val("")
+  
   $field.parent().append($newField)
 })
 
