@@ -6,22 +6,19 @@ const recipeSchema = mongoose.Schema({
     type: String
   },
   ingredients: [],
+  steps: [],
   category: {
     type: String
-  },
-  steps: [],
-  author: {
-    type: String
-  },
-  created_at: {
-    type: Date,
-    default: Date.now
   },
   author: {
     type: String
   },
   body: {
     type: String
+  },
+  created_at: {
+    type: Date,
+    default: Date.now
   },
   comments:  [{
     comment_subject: {

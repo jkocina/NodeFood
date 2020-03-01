@@ -28,7 +28,7 @@ router.get('/category/:category_id',  (req, res, next) => {
 })
 
 
-// add category
+// add category POST
 router.post('/add', (req, res, next) => {
 
   let recipe = new Recipe()
@@ -46,6 +46,36 @@ router.post('/add', (req, res, next) => {
     res.redirect('/manage/recipes')
   })
 })
+
+// edit recipe POST
+router.post('/edit/:id', (req, res, next) => {
+
+  let recipe = new Recipe()
+  const query = {_id: req.params.id}
+  const update = {title: req.body.title, ingredients: req.body.ingredients, steps: req.body.steps, category: req.body.category, author: req.body.author, body: req.body.body}
+
+  Category.updateCategory( query, update, {}, (err, category) => {
+    if (err) {
+      res.send(err)
+    }
+    res.redirect('/manage/categories')
+  })
+})
+
+// edit category POST
+router.delete('/delete/:id', (req, res, next) => {
+
+  console.log("Made it to the post delete")
+  const query = {_id: req.params.id}
+
+  Category.removeCategory(query, (err, category) => {
+    if (err) {
+      res.send(err)
+    }
+    res.json({ success:true })
+  })
+})
+
 
 
 module.exports = router

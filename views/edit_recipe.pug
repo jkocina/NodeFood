@@ -8,12 +8,21 @@ block content
         label Title:
         input.form-control(name='title', type='text', value=recipe.title)
       .form-group
-        label ingredients:
-        alert("Hello")
-        //each ingredient in recipe.ingredient
-        //  input.form-control(name='ingredient[]', type='text', value=ingredient)
+        label Ingredients:
 
+        each ingredient in recipe.ingredients
+          input.form-control(name='ingredients[]', type='text', value=ingredient)
+      .form-group
+        label Steps:
+        each step in recipe.steps
+          input.form-control(name='steps[]', type='text', value=step)
+      .form-group
+        label Author:
+        input.form-control(name='author', type='text', value=recipe.author)
+      .form-group
+        label Body:
+        input.form-control(name='body', type='text', value=recipe.body)
 
-      input.btn.btn-primary(type='submit', name='submit', value='Save')
+      input.btn.btn-primary(type='submit', name='submit', value='Change')
       a.btn.btn-secondary(href='/manage/categories') Back
-      a.btn.btn-danger.category-delete.pull-right(data-cat-id=category._id) Delete
+      a.btn.btn-danger.category-delete.pull-right(data-cat-id=recipe._id) Delete

@@ -45,9 +45,6 @@ router.post('/edit/:id', (req, res, next) => {
   const query = {_id: req.params.id}
   const update = {title: req.body.title, description: req.body.description}
 
-  category.title = req.body.title
-  category.description = req.body.description
-
   Category.updateCategory( query, update, {}, (err, category) => {
     if (err) {
       res.send(err)
