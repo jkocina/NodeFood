@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-//Creating a schema for the Recipes
+// a schema for the Recipes
 const recipeSchema = mongoose.Schema({
   title:{
     type: String
