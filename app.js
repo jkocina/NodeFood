@@ -32,6 +32,9 @@ const manageRoute = require('./routes/manage')
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'pug')
 
+//moment
+app.locals.moment = require('moment')
+
 //bodyParser middle ware
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true}))

@@ -46,7 +46,7 @@ router.get('/show/:id',  (req, res, next) => {
 })
 
 /**
- * GET request will show categories based on their category Id
+ * GET request will show recipes based on their category
  * Originates from the manage/category page
  */
 router.get('/category/:category_id',  (req, res, next) => {
@@ -90,7 +90,14 @@ router.post('/edit/:id', (req, res, next) => {
 
   //sets an id to query and info to update
   let query = {_id: req.params.id}
-  let update = {title: req.body.title, ingredients: req.body.ingredients, steps: req.body.steps, category: req.body.category, author: req.body.author, body: req.body.body}
+  let update = {
+    title: req.body.title,
+    ingredients: req.body.ingredients,
+    steps: req.body.steps,
+    category: req.body.category,
+    author: req.body.author,
+    body: req.body.body
+  }
 
   //updating the recipe
   Recipe.updateRecipe( query, update, {}, (err, recipe) => {
@@ -102,21 +109,22 @@ router.post('/edit/:id', (req, res, next) => {
     res.redirect('/manage/recipes')
   })
 })
+
 /**
  * POST to delete a recipe
  * Originates from the edit recipe view
  */
 router.delete('/delete/:id', (req, res, next) => {
 
-  //Create a query to remove a category
+  //Create a query to remove a recipe
   let query = {_id: req.params.id}
 
-  //Remvoing a category
-  Category.removeCategory(query, (err, category) => {
+  //Remvoing a recipe
+  Recipe.removeRecipe(query, (err, recipe) => {
     if (err) {
       res.send(err)
     }
-    
+
     //sending a success to and redirecting from the ajax request
     res.json({ success:true })
   })

@@ -38,7 +38,7 @@ router.get('/recipes',  (req, res, next) => {
 router.get('/recipe/add', (req, res, next) => {
 
   //getting the categories, the categories will populate a select tag
-  Recipe.getCategories((err, categories) => {
+  Category.getCategories((err, categories) => {
     if (err) {
       res.send(err)
     }

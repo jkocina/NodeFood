@@ -15,6 +15,7 @@ block content
         th Recipe Steps
         th Recipe Author
         th Recipe Body
+        th Date Created
         th Actions
       each recipe, i in recipes
         tr
@@ -24,6 +25,7 @@ block content
           td #{recipe.steps}
           td #{recipe.author}
           td #{recipe.body}
+          td #{moment(recipe.created_at).format('MMM Do YYYY, h:mm:ss a')}
           td
             a(class="btn btn-primary" href="/manage/recipe/edit/"+recipe._id) Edit
             // a(class="btn btn-tiny btn-default" href="/manage/categories/delete/"+recipe._id) Delete

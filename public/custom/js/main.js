@@ -1,47 +1,68 @@
 $(document).ready(() => {
-    $('.category-delete').on('click', (e) => {
 
-      $target = $(e.target)
+  //Deleting a category
+  $('.category-delete').on('click', (e) => {
 
-      $.ajax({
-        type: "DELETE",
-        url: "/categories/delete/"+$target.attr('data-cat-id'),
-        success: (response) => {
+    $target = $(e.target)
 
-          alert('Category Removed')
-          window.location.href='/'
-        },
-        error: (error) => {
+    $.ajax({
+      type: "DELETE",
+      url: "/categories/delete/"+$target.attr('data-cat-id'),
+      success: (response) => {
 
-          console.log(error)
-        }
-      })
+        alert('Category Removed')
+        window.location.href='/manage/categories'
+      },
+      error: (error) => {
+
+        console.log(error)
+      }
     })
-})
+  })
 
-//adding a button to a series
-$('.add-button').on('click', (e) => {
+  //Deleting a recipe
+  $('.recipe-delete').on('click', (e) => {
 
-  $target = $(e.target)
+    $target = $(e.target)
 
-  $field = $target.prev()
+    $.ajax({
+      type: "DELETE",
+      url: "/recipes/delete/"+$target.attr('data-rec-id'),
+      success: (response) => {
 
-  $newField = $field.clone()
+        alert('Recipe Removed')
+        window.location.href='/manage/recipes'
+      },
+      error: (error) => {
 
-  $newField.val("")
-  
-  $field.parent().append($newField)
-})
+        console.log(error)
+      }
+    })
+  })
 
+  //adding a button to a series
+  $('.add-button').on('click', (e) => {
 
-//removing a button from a series
-$('.remove-button').on('click', (e) => {
+    $target = $(e.target)
 
-  $target = $(e.target)
+    $field = $target.prev()
 
-  $prev = $target.prev().prev()
+    $newField = $field.clone()
 
-  $next = $target.next()
+    $newField.val("")
 
-  $next.remove()
+    $field.parent().append($newField)
+  })
+
+  //removing a button from a series
+  $('.remove-button').on('click', (e) => {
+
+    $target = $(e.target)
+
+    $prev = $target.prev().prev()
+
+    $next = $target.next()
+
+    $next.remove()
+  })
 })
