@@ -5,18 +5,32 @@ const Recipe = require('../models/Recipes.js')
 
 //This GET request will show all the articles
 router.get('/',  (req, res, next) => {
-    res.render('recipes', {
-      title:"recipes"
+
+    Recipe.getRecipes((err, recipes) => {
+      if (err) {
+        res.send(err)
+      }
+      res.render('recipes', {
+        title:"recipes",
+        recipes: recipes
+      })
     })
 })
 
 //This GET request will show a specific article based on the articles id
 router.get('/show/:id',  (req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*")
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
 
-    res.render('receipe', {
-      title:"Receipe"
+    let query = { _id: req.params.id }
+
+    Recipe.getRecipeById(query, (err, recipe) => {
+        if (err) {
+          res.send(err)
+        }
+
+        res.render('recipe', {
+          title: Recipe,
+          recipe: recipe
+        })
     })
 })
 
@@ -65,7 +79,6 @@ router.post('/edit/:id', (req, res, next) => {
 // edit category POST
 router.delete('/delete/:id', (req, res, next) => {
 
-  console.log("Made it to the post delete")
   const query = {_id: req.params.id}
 
   Category.removeCategory(query, (err, category) => {
@@ -75,7 +88,5 @@ router.delete('/delete/:id', (req, res, next) => {
     res.json({ success:true })
   })
 })
-
-
 
 module.exports = router

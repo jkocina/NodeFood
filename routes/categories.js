@@ -4,17 +4,13 @@ const router = express.Router()
 //Getting the category model
 Category = require('../models/Category.js')
 
-//This GET request will show all the categories
+//Show all categories POST
 router.get('/',  (req, res, next) => {
 
   Category.getCategories((err, categories) => {
-
     if (err) {
       res.send(err)
     }
-
-    //To make sure we are getting the categories from mongo
-    console.log(categories)
 
     res.render('categories', {
       title:'Categories',
@@ -23,7 +19,7 @@ router.get('/',  (req, res, next) => {
   })
 })
 
-// add category
+// add category POST
 router.post('/add', (req, res, next) => {
 
   let category = new Category()
@@ -53,17 +49,16 @@ router.post('/edit/:id', (req, res, next) => {
   })
 })
 
-// edit category POST
+// delete category POST
 router.delete('/delete/:id', (req, res, next) => {
 
-  console.log("Made it to the post delete")
   const query = {_id: req.params.id}
 
   Category.removeCategory(query, (err, category) => {
     if (err) {
       res.send(err)
     }
-    res.json({ success:true })
+    res.json({success:true})
   })
 })
 

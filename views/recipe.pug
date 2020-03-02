@@ -1,4 +1,40 @@
 extends layout
 
 block content
-  h1 #{title}
+  .container
+    .row
+      .col-md-6
+        h1 recipe.title
+      .col-md-6
+        h3 recipe.category
+    .row
+      .col-md-3
+        p Take Note:
+      .col-md-9
+        recipe.body
+    .row
+      .col-md-3
+        p Ingredients:
+      .col-md-9
+        ul
+          //each ingredient in recipe.ingredients
+          //  li ingredient
+    .row
+      .col-md-3
+        p Steps:
+      .col-md-9
+        ul
+          //each step in recipe.step
+          //  li step
+    .row
+      .col-md-3
+        p Author:
+      .col-md-9
+        recipe.author
+    .row
+      .col-md-3
+        p Comments
+      .col-md-9
+        //each comment in recipe.comments
+        //  p comment.comment_body
+      a.btn.btn-submit.add-comment(data-cat-id=recipe._id) Add

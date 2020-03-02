@@ -1,5 +1,5 @@
 ## Node Food
-** This site is a space to save my favorite recipes **
+** This site is a space to save favorite recipes **
 
 Features:
 1. Create account and log in
