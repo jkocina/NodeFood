@@ -5,10 +5,18 @@ block content
     h1 #{title}
     form(method='post', action='/recipes/edit/'+recipe._id)
       .form-group
-        label Title:
+        label Title
         input.form-control(name='title', type='text', value=recipe.title)
       .form-group
-        label Ingredients:
+        label Category #{recipe.category}
+        select.form-control(name='category')
+          each category, i in categories
+            if(category._id == recipe.category)
+              option(value=category._id, selected) #{category.title}
+            else
+              option(value=category._id) #{category.title}
+      .form-group
+        label Ingredients
         each ingredient, i in recipe.ingredients
           if i == 0
             input.form-control(name='ingredients[]', type='text', value=ingredient)

@@ -66,6 +66,7 @@ router.post('/add', (req, res, next) => {
   //Creating a object of the recipe mongoose model to populate with info for the update
   let recipe = new Recipe()
   recipe.title = req.body.title
+  recipe.category = req.body.category
   recipe.ingredients = req.body.ingredients
   recipe.steps = req.body.steps
   recipe.author = req.body.author
@@ -76,6 +77,7 @@ router.post('/add', (req, res, next) => {
     if (err) {
       res.send(err)
     }
+
     //Redirecting to the manage/recipes handler
     res.redirect('/manage/recipes')
   })
@@ -95,6 +97,7 @@ router.post('/edit/:id', (req, res, next) => {
     if (err) {
       res.send(err)
     }
+
     //redirecitng to the /manage/recipt handler
     res.redirect('/manage/recipes')
   })
@@ -113,6 +116,7 @@ router.delete('/delete/:id', (req, res, next) => {
     if (err) {
       res.send(err)
     }
+    
     //sending a success to and redirecting from the ajax request
     res.json({ success:true })
   })

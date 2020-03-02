@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+
 Category = require('../models/Category.js')
 Recipe = require('../models/Recipes.js')
 
@@ -60,10 +61,18 @@ router.get('/recipe/edit/:id', (req, res, next) => {
     if (err) {
       res.send(err)
     }
-    //Rendering the recipe for editing
-    res.render('edit_recipe', {
-      title: 'Edit Recipe',
-      recipe: recipe
+
+    //Get all catagories
+    Category.getCategories((err, catagories) => {
+      if (err) {
+        res.send(err)
+      }
+      //Rendering the recipe for editing
+      res.render('edit_recipe', {
+        title: 'Edit Recipe',
+        recipe: recipe,
+        categories: catagories
+      })
     })
   })
 })
