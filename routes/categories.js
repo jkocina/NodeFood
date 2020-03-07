@@ -66,19 +66,35 @@ router.post('/add', (req, res, next) => {
 // edit category POST
 router.post('/edit/:id', (req, res, next) => {
 
-  //Creates an object of the category model to add values from the request body
-  let category = new Category()
-  let query = {_id: req.params.id}
-  let update = {title: req.body.title, description: req.body.description}
+  //setting the validation rules to check req values for emptiness
+  req.checkBody('title', 'Title is required').notEmpty()
+  //req.checkBody('description', 'Description is required').notEmpty()
 
-  //Updates a category
-  Category.updateCategory( query, update, {}, (err, category) => {
-    if (err) {
-      res.send(err)
-    }
-    //redirects to the manage/catagories view
-    res.redirect('/manage/categories')
-  })
+  //running the function to check for the defined rules
+  let errors = req.validationErrors()
+
+  //If there are validation rules, render the page with the rules, else, add category
+  if (errors) {
+    res.render('edit_category', {
+      errors: errors,
+      title: 'Edit Category',
+    })
+  } else {
+
+    //Creates an object of the category model to add values from the request body
+    let category = new Category()
+    let query = {_id: req.params.id}
+    let update = {title: req.body.title, description: req.body.description}
+
+    //Updates a category
+    Category.updateCategory( query, update, {}, (err, category) => {
+      if (err) {
+        res.send(err)
+      }
+      //redirects to the manage/catagories view
+      res.redirect('/manage/categories')
+    })
+  }
 })
 
 /**

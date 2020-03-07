@@ -63,51 +63,114 @@ router.get('/category/:category_id',  (req, res, next) => {
  */
 router.post('/add', (req, res, next) => {
 
-  //Creating a object of the recipe mongoose model to populate with info for the update
-  let recipe = new Recipe()
-  recipe.title = req.body.title
-  recipe.category = req.body.category
-  recipe.ingredients = req.body.ingredients
-  recipe.steps = req.body.steps
-  recipe.author = req.body.author
-  recipe.body = req.body.body
+  req.checkBody('title', 'Title is required').notEmpty()
+  req.checkBody('category', 'Category is required').notEmpty()
+  req.checkBody('ingredients', 'Ingredients is required').notEmpty()
+  req.checkBody('steps', 'Steps is required').notEmpty()
+  req.checkBody('author', 'Author is required').notEmpty()
+  req.checkBody('body', 'Body is required').notEmpty()
 
-  //Adding the recipe
-  Recipe.addRecipe(recipe, (err, recipe) => {
-    if (err) {
-      res.send(err)
-    }
+  let errors = req.validationErrors()
 
-    //Redirecting to the manage/recipes handler
-    res.redirect('/manage/recipes')
-  })
+  if (errors) {
+
+    //getting the categories
+    Category.getCategories((err,categories) => {
+      if (err) {
+        res.send(err)
+      } else {
+
+        //rendering the add recipe view with categories
+        res.render('add_recipe', {
+          title: 'Create Recipe',
+          categories: categories,
+          errors: errors
+        })
+      }
+    })
+  } else {
+
+    //Creating a object of the recipe mongoose model to populate with info for the update
+    let recipe = new Recipe()
+    recipe.title = req.body.title
+    recipe.category = req.body.category
+    recipe.ingredients = req.body.ingredients
+    recipe.steps = req.body.steps
+    recipe.author = req.body.author
+    recipe.body = req.body.body
+
+    //Adding the recipe
+    Recipe.addRecipe(recipe, (err, recipe) => {
+      if (err) {
+        res.send(err)
+      }
+
+      //Redirecting to the manage/recipes handler
+      res.redirect('/manage/recipes')
+    })
+  }
 })
+
 /**
  * POST to edit a recipe
  * Originates from the manage recipe view
  */
 router.post('/edit/:id', (req, res, next) => {
 
-  //sets an id to query and info to update
-  let query = {_id: req.params.id}
-  let update = {
-    title: req.body.title,
-    ingredients: req.body.ingredients,
-    steps: req.body.steps,
-    category: req.body.category,
-    author: req.body.author,
-    body: req.body.body
-  }
+  //Setting the rules to validate
+  req.checkBody('title', 'Title is required').notEmpty()
+  req.checkBody('category', 'Category is required').notEmpty()
+  req.checkBody('ingredients', 'Ingredients is required').notEmpty()
+  req.checkBody('steps', 'Steps is required').notEmpty()
+  req.checkBody('author', 'Author is required').notEmpty()
+  req.checkBody('body', 'Body is required').notEmpty()
 
-  //updating the recipe
-  Recipe.updateRecipe( query, update, {}, (err, recipe) => {
-    if (err) {
-      res.send(err)
+  //getting the errors from the validation rules
+  let errors = req.validationErrors()
+
+  if (errors) {
+    //Getting a single recipe
+    Recipe.getRecipeById(req.params.id, (err, recipe) => {
+      if (err) {
+        res.send(err)
+      }
+
+      //Get all catagories
+      Category.getCategories((err, catagories) => {
+        if (err) {
+          res.send(err)
+        }
+        //Rendering the recipe for editing
+        res.render('edit_recipe', {
+          title: 'Edit Recipe',
+          recipe: recipe,
+          categories: catagories,
+          errors: errors
+        })
+      })
+    })
+  } else {
+    //sets an id to query and info to update
+    let query = {_id: req.params.id}
+    let update = {
+      title: req.body.title,
+      ingredients: req.body.ingredients,
+      steps: req.body.steps,
+      category: req.body.category,
+      author: req.body.author,
+      body: req.body.body
     }
 
-    //redirecitng to the /manage/recipt handler
-    res.redirect('/manage/recipes')
-  })
+    //updating the recipe
+    Recipe.updateRecipe( query, update, {}, (err, recipe) => {
+      if (err) {
+        res.send(err)
+      }
+
+      //redirecitng to the /manage/recipt handler
+      res.redirect('/manage/recipes')
+    })
+  }
 })
 
 /**
