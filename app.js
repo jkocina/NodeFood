@@ -44,7 +44,14 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 //connect flash middle ware
 app.use(cookieParser('keyboard cat'))
-app.use(session({ cookie: { maxAge: 60000 }}))
+app.use(session({
+  secret: 'secret',
+  resave: false,
+  saveUnunutualized: true ,
+  cookie: {
+    maxAge: 60000
+  }
+}))
 app.use(flash())
 
 

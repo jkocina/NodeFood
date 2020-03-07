@@ -57,6 +57,8 @@ router.post('/add', (req, res, next) => {
         res.send(err)
       }
 
+      //setting a flash when adding a category
+      req.flash('success', 'Category ' + req.body.title + ' added')
       //redirects to the manage catagories
       res.redirect('/manage/categories')
     })
@@ -91,6 +93,10 @@ router.post('/edit/:id', (req, res, next) => {
       if (err) {
         res.send(err)
       }
+
+      //setting a flash when adding a category
+      req.flash('success', 'Category ' + req.body.title + ' edited')
+
       //redirects to the manage/catagories view
       res.redirect('/manage/categories')
     })

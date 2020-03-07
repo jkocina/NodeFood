@@ -7,6 +7,7 @@ block content
         h1 #{title}
       .col-md-3
         a(class="btn btn-success create-btn", href="/manage/recipe/add") Add Recipe
+    != messages()
     table(class='table table-striped')
       tr
         th Recipe Title

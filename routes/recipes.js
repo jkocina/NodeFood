@@ -105,6 +105,9 @@ router.post('/add', (req, res, next) => {
         res.send(err)
       }
 
+      //Setting a flash message when adding recipe
+      req.flash('success', 'Recipe ' + req.body.title + ' added')
+
       //Redirecting to the manage/recipes handler
       res.redirect('/manage/recipes')
     })
@@ -150,6 +153,7 @@ router.post('/edit/:id', (req, res, next) => {
       })
     })
   } else {
+
     //sets an id to query and info to update
     let query = {_id: req.params.id}
     let update = {
@@ -166,6 +170,9 @@ router.post('/edit/:id', (req, res, next) => {
       if (err) {
         res.send(err)
       }
+
+      //Setting a flash message when editing recipe
+      req.flash('success', 'Recipe ' + req.body.title + ' edited')
 
       //redirecitng to the /manage/recipt handler
       res.redirect('/manage/recipes')
