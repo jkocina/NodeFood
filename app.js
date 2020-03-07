@@ -55,6 +55,23 @@ app.use((req, res, next) => {
   next()
 })
 
+// Express validator
+app.use(expressValidator({
+  errorFormatter: (param, msg, value) => {
+      const namespace = param.split('.')
+      , root    = namespace.shift()
+      , formParam = root;
+
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']'
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    }
+  }
+}))
 
 //setting the routes for the router
 app.use('/', indexRoute)
