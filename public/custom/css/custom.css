@@ -8,7 +8,7 @@
 
 #messages ul {
   margin: 0;
-  padding: 0;  
+  padding: 0;
 }
 
 #messages li {
@@ -19,4 +19,18 @@
 #messages .success{
   background: green;
   color: white;
+}
+
+.showcase {
+  background: url('/img/lineOfDishes.jpg')
+  color: white;
+}
+
+.navbar  {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+.navbar-toggler-icon  {
+  
 }
