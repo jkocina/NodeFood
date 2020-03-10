@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const axios = require("axios")
 
 const Recipe = require('../models/Recipes.js')
 
@@ -14,6 +15,14 @@ router.get('/',  (req, res, next) => {
     if (err) {
       res.send(err)
     }
+
+    let siteUrl = "https://www.foodnetwork.com/recipes/tyler-florence/chicken-marsala-recipe-1951778"
+    const fetchData = async () => {
+      const result = await axios.get(siteUrl);
+      //return cheerio.load(result.data);
+      console.log(result.data);
+
+    };
 
     //rendering the recipes view
     res.render('recipes', {
@@ -37,6 +46,8 @@ router.get('/show/:id',  (req, res, next) => {
       res.send(err)
     }
 
+    const siteUrl = "https://remoteok.io/";
+
     //Renders the recipe view
     res.render('recipe', {
       title: Recipe,
@@ -51,9 +62,16 @@ router.get('/show/:id',  (req, res, next) => {
  */
 router.get('/category/:category_id',  (req, res, next) => {
 
-  //Renders a catagory view
-  res.render('category', {
-    title:"Category recipes"
+  Recipe.getCategoryRecipes(req.params.category_id, (err, recipes) => {
+    if (err) {
+      res.send(err)
+    }
+
+    //Renders a catagory view
+    res.render('category', {
+      title:"Category recipes",
+      recipes: recipes
+    })
   })
 })
 

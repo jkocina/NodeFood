@@ -1,4 +1,9 @@
 extends layout
 
 block content
-  h1 #{title}
+  .container
+    h1 #{title}
+    ul.list-group
+      each recipe, i in recipes
+        li.list-group-item
+          a(href='/recipes/show/'+recipe._id) #{recipe.title}

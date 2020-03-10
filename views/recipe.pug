@@ -4,37 +4,39 @@ block content
   .container
     .row
       .col-md-6
-        h1 recipe.title
+        h1 #{recipe.title}
       .col-md-6
-        h3 recipe.category
+        h3 #{recipe.category}
     .row
       .col-md-3
         p Take Note:
       .col-md-9
-        recipe.body
+        p #{recipe.body}
     .row
       .col-md-3
         p Ingredients:
       .col-md-9
-        ul
-          //each ingredient in recipe.ingredients
-          //  li ingredient
+        ol
+          each ingredient in recipe.ingredients
+            li #{ingredient}
     .row
       .col-md-3
         p Steps:
       .col-md-9
-        ul
-          //each step in recipe.step
-          //  li step
+        ol
+          each step in recipe.steps
+            li #{step}
     .row
       .col-md-3
         p Author:
       .col-md-9
-        recipe.author
+        p #{recipe.author}
     .row
       .col-md-3
         p Comments
       .col-md-9
         //each comment in recipe.comments
-        //  p comment.comment_body
-      a.btn.btn-submit.add-comment(data-cat-id=recipe._id) Add
+        //  p #{comment.comment_body}
+        //  p #{comment.comment_author}
+        //   Link to author page with author id
+      a.btn.btn-submit.add-comment(id="add-comment") Add

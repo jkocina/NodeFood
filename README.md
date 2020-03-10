@@ -6,3 +6,7 @@ Features:
 2. Browse recipes by category
 3. Add new recipes
 4. Edit recipes from admin section
+
+
+additions for future projects
+add pop-up box instructions
