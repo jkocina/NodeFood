@@ -49,9 +49,9 @@ module.exports.getRecipes = function(callback, limit) {
 }
 
 // Get articles by category
-module.exports.getCategoryRecipes = function(catagoryId, callback) {
+module.exports.getCategoryRecipes = function(categoryId, callback) {
 
-  let query = { category: catagoryId }
+  let query = { category: categoryId }
 
   Recipe.find(query, callback).sort([['title','ascending']])
 }

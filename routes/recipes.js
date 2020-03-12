@@ -67,6 +67,8 @@ router.get('/category/:category_id',  (req, res, next) => {
       res.send(err)
     }
 
+    console.log("The Recipes are " + recipes)
+
     //Renders a catagory view
     res.render('category', {
       title:"Category recipes",
