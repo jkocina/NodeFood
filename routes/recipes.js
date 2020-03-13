@@ -8,21 +8,13 @@ const Recipe = require('../models/Recipes.js')
  * GET request to render recipes
  *
  */
-router.get('/',  (req, res, next) => {
+router.get('/', (req, res, next) => {
 
   //This will get all recipes
   Recipe.getRecipes((err, recipes) => {
     if (err) {
       res.send(err)
     }
-
-    let siteUrl = "https://www.foodnetwork.com/recipes/tyler-florence/chicken-marsala-recipe-1951778"
-    const fetchData = async () => {
-      const result = await axios.get(siteUrl);
-      //return cheerio.load(result.data);
-      console.log(result.data);
-
-    };
 
     //rendering the recipes view
     res.render('recipes', {
@@ -61,18 +53,12 @@ router.get('/show/:id',  (req, res, next) => {
  * Originates from the manage/category page
  */
 router.get('/category/:category_id',  (req, res, next) => {
-
   Recipe.getCategoryRecipes(req.params.category_id, (err, recipes) => {
-    if (err) {
-      res.send(err)
-    }
-
-    console.log("The Recipes are " + recipes)
-
-    //Renders a catagory view
-    res.render('category', {
-      title:"Category recipes",
-      recipes: recipes
+    Category.getCategoryById(req.params.category_id, (err, category) => {
+      res.render('recipes', {
+        title: category.title+' Recipes',
+        recipes: recipes
+      })
     })
   })
 })

@@ -5,3 +5,10 @@ block content
     .container
       h1 Recipe Saver
       p.lead a website to keep track of recipes
+  .container
+    .row
+      .col-md-12
+        each recipe, i in recipes
+          h2.post-title #{recipe.title}
+          a(href='/recipes/show/'+recipe._id) Go to Recipe
+          hr
